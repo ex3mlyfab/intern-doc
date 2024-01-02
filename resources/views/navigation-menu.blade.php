@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <div class="inline-flex items-center px-1 pt-1 ms-3 relative">
+                    <div class="inline-flex items-center px-1 pt-1 ms-3 relative cursor-pointer border-b-2 border-transparent hover:border-gray-500">
                         <x-dropdown align="left">
                         <x-slot name="trigger">
                             <div class="inline-flex items-center">
@@ -33,8 +33,8 @@
                             <x-dropdown-link href="{{ route('role.list')}}">
                                 {{ __('Role') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('role.list')}}">
-                                {{ __('Permission') }}
+                            <x-dropdown-link href="{{ route('permission.list')}}">
+                                {{ __('Permissions') }}
                             </x-dropdown-link>
                         </x-slot>
                         </x-dropdown>
@@ -46,6 +46,9 @@
 
                     <x-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
                         {{ __('Intern Doctors') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('evaluate.list') }}" :active="request()->routeIs('evaluate.list')">
+                        {{ __('Evaluate Interns') }}
                     </x-nav-link>
 
                 </div>

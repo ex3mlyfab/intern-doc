@@ -12,6 +12,7 @@ use App\Livewire\Doctor\ListIntern;
 use App\Livewire\Doctor\ShowIntern;
 use App\Livewire\EvaluateIntern;
 use App\Livewire\Performance;
+use App\Livewire\Permission;
 use App\Livewire\PermissionList;
 use App\Livewire\RolePermission;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,7 @@ Route::middleware([
     Route::get('/intern-doctors/{record}/show', ShowIntern::class)->name('doctor.show');
     Route::get('/role/create', [MultiFormController::class, 'createRole'])->name('role.create');
     Route::get('/role', RolePermission::class)->name('role.list');
+    Route::get('/permissions', Permission::class)->name('permission.list');
     Route::get('/user', ListUser::class)->name('user.list');
     Route::get('/user/create',CreateUser::class)->name('user.create');
     Route::get('/pevaluation', Performance::class)->name('evaluate.list');

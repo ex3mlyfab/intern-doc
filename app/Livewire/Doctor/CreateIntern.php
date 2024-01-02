@@ -74,7 +74,8 @@ class CreateIntern extends Component implements HasForms
                                 0 => 'Submitted',
                                 1 => 'In Training',
                                 2 => 'Completed',
-                            ]),
+                            ])
+                            ->default(0),
                     ])
                 //
             ])
