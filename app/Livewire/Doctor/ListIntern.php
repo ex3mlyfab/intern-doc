@@ -24,15 +24,20 @@ class ListIntern extends Component implements HasForms, HasTable
         return $table
             ->query(InternDoctor::query())
             ->columns([
+                Tables\Columns\ImageColumn::make('avatar')
+                    ->circular()
+                    ->defaultImageUrl(url('/images/fmc_logo.png')),
                 Tables\Columns\TextColumn::make('index')
                     ->rowIndex(isFromZero: false),
                 Tables\Columns\TextColumn::make('fullname')
-                    ->label("Full Name"),
+                    ->label("Full Name")
+                    ->searchable(isIndividual: true, isGlobal: false),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email Address'),
                 Tables\Columns\TextColumn::make('phone')
                     ->label('Phone Number'),
                 Tables\Columns\TextColumn::make('training_status')
+                    ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'Registered' => 'gray',
                         'In Training' => 'warning',

@@ -44,4 +44,22 @@ class PostingRecord extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function getTrainingStatusAttribute(): string
+    {
+        switch($this->posting_status) {
+            case 0:
+                return "Posted";
+                break;
+            case 1:
+                return "Active";
+                break;
+            case 2:
+                return "Done";
+                break;
+
+
+    }
+}
+
 }

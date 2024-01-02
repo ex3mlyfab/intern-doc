@@ -12,15 +12,42 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <div class="inline-flex items-center px-1 pt-1 ms-3 relative">
+                        <x-dropdown align="left">
+                        <x-slot name="trigger">
+                            <div class="inline-flex items-center">
+                                {{ __('Settings')}}
+                                <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-dropdown-link href="{{ route('department')}}">
+                                {{ __('Department') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('user.list')}}">
+                                {{ __('Users') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('role.list')}}">
+                                {{ __('Role') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('role.list')}}">
+                                {{ __('Permission') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                        </x-dropdown>
+                    </div>
+
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('department') }}" :active="request()->routeIs('department')">
-                        {{ __('Department') }}
-                    </x-nav-link>
+
                     <x-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
                         {{ __('Intern Doctors') }}
                     </x-nav-link>
+
                 </div>
             </div>
 
@@ -83,12 +110,12 @@
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->fullname }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->fullname }}
 
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />

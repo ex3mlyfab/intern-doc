@@ -13,7 +13,10 @@
 
                         <div class="flex py-2 justify-center align-items-center">
                         <x-button type="submit" class="w--5xl self-center" >
-                            <x-filament::loading-indicator class="h-5 w-5" /> Submit
+                            @if ($submitting)
+                                <x-filament::loading-indicator class="h-5 w-5" />
+                            @endif
+                            Submit
                         </x-button>
                     </div>
                     </form>
@@ -22,8 +25,4 @@
                 </div>
             </div>
         </div>
-
-
-
-
 </div>

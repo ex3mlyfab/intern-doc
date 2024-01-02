@@ -16,6 +16,7 @@ class CreateIntern extends Component implements HasForms
     use InteractsWithForms;
 
     public ?array $data = [];
+    public bool $submitting = false;
 
     public function mount(): void
     {
@@ -83,6 +84,7 @@ class CreateIntern extends Component implements HasForms
 
     public function create(): void
     {
+        $this->submitting =true;
         $data = $this->form->getState();
 
         $record = InternDoctor::create($data);
@@ -92,7 +94,7 @@ class CreateIntern extends Component implements HasForms
         ->title('Intern Doctor Saved successfully')
         ->success()
         ->send();
-
+        $this->submitting = false;
         redirect()->route('list.intern');
     }
 
