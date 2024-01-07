@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Intern\AuthenticateInternController;
 use App\Http\Controllers\MultiFormController;
 use App\Livewire\Admin\CreateUser;
 use App\Livewire\Admin\EditUser;
@@ -35,7 +36,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return view('tester');
 });
+// Route::get('/admin-login', [AuthenticatedSessionController::class, 'create'])->name('doctor-login');
 
+// Route::post('/admin-login', [AuthenticatedSessionController::class, 'store']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -58,3 +61,14 @@ Route::middleware([
     Route::get('/pevaluation', Performance::class)->name('evaluate.list');
     Route::get('/pevaluation/{record}/show', EvaluateIntern::class)->name('evaluate.show');
 });
+
+Route::group(['prefix'=>'intern','middleware'=>['intern:intern']],function(){
+    Route::get('/login', [AuthenticateInternController::class, 'loginForm']);
+    Route::post('/login', [AuthenticateInternController::class, 'store'])->name('admin.login');
+   });
+
+
+
+   Route::middleware(['auth:sanctum,intern', 'verified'])->get('/intern/dashboard', function () {
+       return view('dashboard');
+})->name('dashboard-intern');

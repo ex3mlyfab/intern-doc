@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posting_records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('intern_doctor_id');
+            $table->foreignUuid('intern_doctor_id')->constrained();
             $table->foreignId('department_id');
             $table->date('posting_start_date');
             $table->date('posting_end_date');

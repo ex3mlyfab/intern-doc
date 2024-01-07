@@ -2,12 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
 
-class InternDoctor extends Model
+class InternDoctor extends Authenticatable
 {
+    use HasUuids;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    // use HasTeams;
+    use Notifiable;
+    // use TwoFactorAuthenticatable;
     use HasFactory;
     protected $fillable = [
         'surname',
@@ -29,14 +42,20 @@ class InternDoctor extends Model
     ];
 
     protected $hidden = [
-        'passphrase'
+        'passphrase',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     protected $cast = [
         'medical_school_starts' => 'datetime',
         'medical_school_ends' => 'datetime',
         'qualification_obtained_date' => 'datetime',
+        'email_verified_at' => 'datetime',
     ];
+
+    
     public function postingRecords(): HasMany
     {
         return $this->hasMany(PostingRecord::class);

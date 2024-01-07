@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('intern_doctors', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('surname', 125);
             $table->string('first_name', 125);
             $table->string('middle_name', 125)->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('mdcan_reg_number')->nullable();
             $table->string('avatar')->nullable();
             $table->date('mdcan_reg_date')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('intern_status')->default(0);
             $table->timestamps();
         });
