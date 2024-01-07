@@ -1,4 +1,7 @@
 <div>
+    <x-slot name="headTitle">
+        create user
+    </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Create User') }}
@@ -12,9 +15,12 @@
                     {{ $this->form }}
 
                     <div class="flex py-2 justify-center align-items-center">
-                        <x-button class="ms-4">
-                            {{ __('Create User') }}
-                        </x-button>
+                        <x-filament::button
+                        type="submit"
+                        size="md"
+                    >
+                        Submit
+                    </x-filament::button>
                 </div>
                 </form>
 

@@ -14,6 +14,8 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use function PHPUnit\Framework\isNull;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -72,9 +74,16 @@ class User extends Authenticatable
         return $this->hasOne(Admin::class);
     }
 
-    public function department(): HasOneThrough
+    public function getDepartmentNameAttribute(): string
     {
-        return $this->hasOneThrough(Department::class,Admin::class);
+        if($this->admin()->exists()){
+            return $this->admin->department->name;
+        }else{
+            return '';
+
+        }
+
+
     }
 
     public function qualifications(): HasMany
@@ -86,4 +95,6 @@ class User extends Authenticatable
     {
         return ucwords($this->surname. ' '. $this->first_name. ' '. $this->middle_name);
     }
+
+
 }

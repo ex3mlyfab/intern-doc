@@ -22,7 +22,19 @@ class ListUser extends Component implements HasTable, HasForms
                 ->query(User::query())
                 ->columns([
                     Tables\Columns\TextColumn::make('fullname'),
-
+                    Tables\Columns\TextColumn::make('department_name')
+                        ->label('Department'),
+                    Tables\Columns\TextColumn::make('admin.phone')
+                        ->label('Phone No'),
+                    Tables\Columns\TextColumn::make('email')
+                        ->label('Email Address'),
+                    Tables\Columns\TextColumn::make('roles.name')
+                        ->label('Assigned Role')
+                        ->badge(),
+                ])
+                ->actions([
+                    Tables\Actions\EditAction::make()
+                        ->url(fn(User $record) => route('user.edit', $record))
                 ])
                 ->headerActions([
                     Tables\Actions\CreateAction::make()

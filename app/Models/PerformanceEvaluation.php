@@ -40,7 +40,7 @@ class PerformanceEvaluation extends Model
         'sense_of_responsibility',
         'interpersonal',
         'rwha',
-        'oerall_evaluation',
+        'overall_evaluation',
         'general_comments',
         'is_fit',
         'if_is_fit_is_no_comment',

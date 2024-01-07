@@ -48,6 +48,7 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                     })
             ])
             ->actions([
+
                 Tables\Actions\EditAction::make()
                     ->form([
                         Forms\Components\Grid::make(3)
@@ -70,7 +71,9 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
 
 
                     ])
-                    ->closeModalByClickingAway(false)
+                    ->closeModalByClickingAway(false),
+                    Tables\Actions\DeleteAction::make()
+                    ->successRedirectUrl(route('posts.list'))
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
@@ -141,7 +144,10 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                                             ->columns(3)
                                             ->schema([
                                                 Infolists\Components\ImageEntry::make('avatar')
-                                                    ->defaultImageUrl(url('/images/fmc_logo.png')),
+                                                    ->defaultImageUrl(url('/images/fmc_logo.png'))
+                                                    ->columnSpanFull()
+                                                    ->extraAttributes(['class' => 'flex items-center justify-center'])
+                                                    ,
                                                 Infolists\Components\TextEntry::make('fullname')
                                                     ->size(Infolists\Components\TextEntry\TextEntrySize::Large),
                                                 Infolists\Components\TextEntry::make('email')
@@ -159,8 +165,10 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                                                 Infolists\Components\TextEntry::make('qualification_obtained'),
                                                 Infolists\Components\TextEntry::make('qualification_obtained_date')
                                                     ->dateTime(),
-                                                Infolists\Components\TextEntry::make('mdcan_reg_number'),
+                                                Infolists\Components\TextEntry::make('mdcan_reg_number')
+                                                    ->label('MDCAN Registration Number'),
                                                 Infolists\Components\TextEntry::make('mdcan_reg_date')
+                                                    ->label('MDCAN Registraion Date')
                                                     ->dateTime(),
 
 

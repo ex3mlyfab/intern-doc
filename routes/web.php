@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MultiFormController;
 use App\Livewire\Admin\CreateUser;
+use App\Livewire\Admin\EditUser;
 use App\Livewire\Admin\ListUser;
 use App\Livewire\Administration;
 use App\Livewire\CreateRole;
@@ -53,6 +54,7 @@ Route::middleware([
     Route::get('/permissions', Permission::class)->name('permission.list');
     Route::get('/user', ListUser::class)->name('user.list');
     Route::get('/user/create',CreateUser::class)->name('user.create');
+    Route::get('/user/{record}/edit',EditUser::class)->name('user.edit');
     Route::get('/pevaluation', Performance::class)->name('evaluate.list');
     Route::get('/pevaluation/{record}/show', EvaluateIntern::class)->name('evaluate.show');
 });
