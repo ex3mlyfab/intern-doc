@@ -44,7 +44,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/web/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/department', Department::class)->name('department');
@@ -63,12 +63,12 @@ Route::middleware([
 });
 
 Route::group(['prefix'=>'intern','middleware'=>['intern:intern']],function(){
-    Route::get('/login', [AuthenticateInternController::class, 'loginForm']);
+    Route::get('/login', [AuthenticateInternController::class, 'loginForm'])->name('intern.login');
     Route::post('/login', [AuthenticateInternController::class, 'store'])->name('admin.login');
    });
 
 
 
-   Route::middleware(['auth:sanctum,intern', 'verified'])->get('/intern/dashboard', function () {
+Route::middleware(['auth:sanctum,intern', 'verified'])->get('/intern/dashboard', function () {
        return view('dashboard');
 })->name('dashboard-intern');

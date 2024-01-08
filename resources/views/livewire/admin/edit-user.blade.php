@@ -76,17 +76,21 @@
 
                             <x-input-error for="photo" class="mt-2" />
                         </div>
+                        @if ($record->roles->first()->name != 'Admin-Officer')
                         <div class="flex flex-col justify-start">
                             <x-label for="rank" value="{{ __('MDCAN Registration Number') }}" class="text-gray-900" />
-                            <x-input id="rank" class="block w-full px-4 mt-1" type="text" wire:model="rank" value="{{ $record->admin->rank}}" />
+                            <x-input id="rank" class="block w-full px-4 mt-1" type="text" wire:model="rank" value="{{ $record->admin->mdcan_regno}}" />
                         </div>
                         <div class="flex flex-col justify-start">
                             <x-label for="rank" value="{{ __('MDCAN Registration Date') }}" class="text-gray-900" />
-                            <x-input id="rank" class="block w-full px-4 mt-1" type="text" wire:model="rank" value="{{ $record->admin->rank}}" />
+                            <x-input id="rank" class="block w-full px-4 mt-1" type="text" wire:model="rank" value="{{ $record->admin->mdcan_reg_date}}" />
                         </div>
+                        @endif
 
+                        {{$record->roles->first()->name}}
 
                     </div>
+                    @if ($record->roles->first()->name != 'Admin-Officer')
                     <div class="m-5 rounded-lg bg-slate-100 px-4 py-5 max-w-full border-t-2 border-gray-900">
                         <div class="flex items-center justify-evenly pb-3 border-b-2 border-gray-300">
                             <div class="font-semibold text-lg">Qualifications</div>
@@ -96,11 +100,11 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-2">
                             <div class="flex flex-col justify-start">
                                 <x-label for="qualification_name.{{$key}}" value="{{ __('Qualification Name') }}" class="text-gray-900" />
-                                <x-input id="qualification_name.{{$key}}" class="block w-full px-4 mt-1" type="text" wire:model="qualification.{{$key}}.name"  />
+                                <x-input id="qualification_name.{{$key}}" class="block w-full px-4 mt-1" type="text" wire:model="qualification.{{$key}}.name"  value="qualification.{{$key}}.name"/>
                             </div>
                             <div class="flex flex-col justify-start">
                                 <x-label for="quali_date.{{$key}}" value="{{ __('Date') }}" class="text-gray-900" />
-                                <x-input id="quali_date.{{$key}}" class="block w-full px-4 mt-1" type="date" wire:model="qualificaton.{{$key}}.date" />
+                                <x-input id="quali_date.{{$key}}" class="block w-full px-4 mt-1" type="date" wire:model="qualificaton.{{$key}}.date" value="qualificaton.{{$key}}.date" />
                             </div>
                             <div class="flex items-center justify-center">
 
@@ -120,11 +124,11 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 py-2">
                             <div class="flex flex-col justify-start">
                                 <x-label for="qualification_name.{{$index_key}}" value="{{ __('Qualification Name') }}" class="text-gray-900" />
-                                <x-input id="qualification_name.{{$index_key}}" class="block w-full px-4 mt-1" type="text" wire:model="qualification.{{$index_key}}.name"  />
+                                <x-input id="qualification_name.{{$index_key}}" class="block w-full px-4 mt-1" type="text" wire:model="qualification.{{$index_key}}.name" value="qualification.{{$index_key}}.name" />
                             </div>
                             <div class="flex flex-col justify-start">
                                 <x-label for="quali_date.{{$index_key}}" value="{{ __('Date') }}" class="text-gray-900" />
-                                <x-input id="quali_date.{{$index_key}}" class="block w-full px-4 mt-1" type="date" wire:model="qualificaton.{{$index_key}}.date" />
+                                <x-input id="quali_date.{{$index_key}}" class="block w-full px-4 mt-1" type="date" wire:model="qualificaton.{{$index_key}}.date" value="qualificaton.{{$index_key}}.date" />
                             </div>
                             <div class="flex items-center justify-center">
 
@@ -136,6 +140,8 @@
                         @endforeach
 
                     </div>
+                    @endif
+
 
                     <div class="flex py-2 justify-center align-items-center">
                         <x-filament::button
