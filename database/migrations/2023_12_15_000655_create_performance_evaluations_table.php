@@ -32,7 +32,7 @@ return new class extends Migration
             $table->tinyInteger('atpcdr')->comment('Ability to present cases during rounds');
             $table->tinyInteger('atlaacs')->comment('Ability to learn and apply clinical skills');
             $table->tinyInteger('auodf')->comment('Appropriate use of diagnostic facilities');
-            $table->tinyInteger('ma')->comment('Appropriate use of diagnostic facilities');
+            $table->tinyInteger('mat')->comment('Appropriate use of diagnostic facilities');
             $table->tinyInteger('side_laboratories')->comment('side laboratory');
             $table->tinyInteger('laboratory_request')->comment('laboratory request');
             $table->tinyInteger('radiology_request')->comment('laboratory request');
