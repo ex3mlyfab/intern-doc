@@ -1,6 +1,6 @@
 <div>
     <x-slot name="headTitle">
-        Intern Doctor
+        Intern Doctor Evaluation
     </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -10,17 +10,18 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-white shadow-xl sm:rounded-lg">
                 {{ $this->infolist }}
-                <form wire:submit="create">
-                <div class="px-4 py-3 bg-gray-100 rounded-lg">
+                <form wire:submit="store">
+                    @csrf
+                <div class="px-4 py-3 overflow-x-auto bg-gray-100 rounded-lg">
 
                         <div class="flex flex-col items-center">
                             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                    <div class="overflow-hidden w-full border border-gray-200 dark:border-gray-900 md:rounded-lg">
+                                    <div class="w-full border border-gray-200 dark:border-gray-900 md:rounded-lg">
                                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-900">
-                                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                            <thead class="bg-gray-50 dark:bg-gray-800 sticky" >
                                                 <tr>
                                                     <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <div class="flex items-center gap-x-3">
@@ -57,9 +58,9 @@
 
                                                 </tr>
                                             </thead>
-                                            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-900 dark:bg-gray-900">
+                                            <tbody class="bg-white divide-y divide-x divide-gray-200 dark:divide-gray-900 dark:bg-gray-900">
                                                 <tr>
-                                                    <td class="px-4 py-4 text-sm font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap">
+                                                    <td class="px-4 py-4 text-sm font-medium text-gray-900 dark:text-gray-200 whitespace-normal">
                                                         <div class="flex items-center justify-start gap-x-3">
 
 
@@ -68,27 +69,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kabms"  value="6" /> </td>
+                                                        wire:model="kabms"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kabms"  value="5" />
+                                                        wire:model="kabms"  value="5" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kabms"  value="4" />
+                                                        wire:model="kabms"  value="4" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kabms"  value="3" />
+                                                        wire:model="kabms"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kabms"  value="2" />
+                                                        wire:model="kabms"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kabms"  value="1" />
+                                                        wire:model="kabms"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -102,27 +103,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaacs"  value="6" /> </td>
+                                                        wire:model="kaacs"  value="6" required="true" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaacs"  value="5" />
+                                                        wire:model="kaacs"  value="5" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaacs"  value="4" />
+                                                        wire:model="kaacs"  value="4" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaacs"  value="3" />
+                                                        wire:model="kaacs"  value="3" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaacs"  value="2" />
+                                                        wire:model="kaacs"  value="2" required="true" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaacs"  value="1" />
+                                                        wire:model="kaacs"  value="1" required="true" />
 
                                                     </td>
                                                 </tr>
@@ -136,27 +137,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kpbms"  value="6" /> </td>
+                                                        wire:model="kpbms"  value="6" required="true" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kpbms"  value="5" />
+                                                        wire:model="kpbms"  value="5" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kpbms"  value="4" />
+                                                        wire:model="kpbms"  value="4" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kpbms"  value="3" />
+                                                        wire:model="kpbms"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kpbms"  value="2" />
+                                                        wire:model="kpbms"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kpbms"  value="1" />
+                                                        wire:model="kpbms"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -170,27 +171,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="locc"  value="6" /> </td>
+                                                        wire:model="locc"  value="6"  required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="locc"  value="5" />
+                                                        wire:model="locc"  value="5" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="locc"  value="4" />
+                                                        wire:model="locc"  value="4" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="locc"  value="3" />
+                                                        wire:model="locc"  value="3" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="locc"  value="2" />
+                                                        wire:model="locc"  value="2" required="true" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="locc"  value="1" />
+                                                        wire:model="locc"  value="1"  required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -204,27 +205,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_ht"  value="6" /> </td>
+                                                        wire:model="mr_ht"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_ht"  value="5" />
+                                                        wire:model="mr_ht"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_ht"  value="4" />
+                                                        wire:model="mr_ht"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_ht"  value="3" />
+                                                        wire:model="mr_ht"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_ht"  value="2" />
+                                                        wire:model="mr_ht"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_ht"  value="1" />
+                                                        wire:model="mr_ht"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -238,27 +239,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_aw"  value="6" /> </td>
+                                                        wire:model="mr_aw"  value="6"  required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_aw"  value="5" />
+                                                        wire:model="mr_aw"  value="5" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_aw"  value="4" />
+                                                        wire:model="mr_aw"  value="4"  required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_aw"  value="3" />
+                                                        wire:model="mr_aw"  value="3"  required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_aw"  value="2" />
+                                                        wire:model="mr_aw"  value="2" required="true" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_aw"  value="1" />
+                                                        wire:model="mr_aw"  value="1"  required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -272,27 +273,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_pn"  value="6" /> </td>
+                                                        wire:model="mr_pn"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_pn"  value="5" />
+                                                        wire:model="mr_pn"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_pn"  value="4" />
+                                                        wire:model="mr_pn"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_pn"  value="3" />
+                                                        wire:model="mr_pn"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_pn"  value="2" />
+                                                        wire:model="mr_pn"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_pn"  value="1" />
+                                                        wire:model="mr_pn"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -306,27 +307,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_cs"  value="6" /> </td>
+                                                        wire:model="mr_cs"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_cs"  value="5" />
+                                                        wire:model="mr_cs"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_cs"  value="4" />
+                                                        wire:model="mr_cs"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_cs"  value="3" />
+                                                        wire:model="mr_cs"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_cs"  value="2" />
+                                                        wire:model="mr_cs"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="mr_cs"  value="1" />
+                                                        wire:model="mr_cs"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -340,27 +341,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="diagnostic_acumen"  value="6" /> </td>
+                                                        wire:model="diagnostic_acumen"  value="6" required="true" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="diagnostic_acumen"  value="5" />
+                                                        wire:model="diagnostic_acumen"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="diagnostic_acumen"  value="4" />
+                                                        wire:model="diagnostic_acumen"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="diagnostic_acumen"  value="3" />
+                                                        wire:model="diagnostic_acumen"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="diagnostic_acumen"  value="2" />
+                                                        wire:model="diagnostic_acumen"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="diagnostic_acumen"  value="1" />
+                                                        wire:model="diagnostic_acumen"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -374,27 +375,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaat"  value="6" /> </td>
+                                                        wire:model="kaat"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaat"  value="5" />
+                                                        wire:model="kaat"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaat"  value="4" />
+                                                        wire:model="kaat"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaat"  value="3" />
+                                                        wire:model="kaat"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaat"  value="2" />
+                                                        wire:model="kaat"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="kaat"  value="1" />
+                                                        wire:model="kaat"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -408,27 +409,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="iwomoht"  value="6" /> </td>
+                                                        wire:model="iwomoht"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="iwomoht"  value="5" />
+                                                        wire:model="iwomoht"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="iwomoht"  value="4" />
+                                                        wire:model="iwomoht"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="iwomoht"  value="3" />
+                                                        wire:model="iwomoht"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="iwomoht"  value="2" />
+                                                        wire:model="iwomoht"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="iwomoht"  value="1" />
+                                                        wire:model="iwomoht"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -442,27 +443,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="cwpe"  value="6" /> </td>
+                                                        wire:model="cwpe"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="cwpe"  value="5" />
+                                                        wire:model="cwpe"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="cwpe"  value="4" />
+                                                        wire:model="cwpe"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="cwpe"  value="3" />
+                                                        wire:model="cwpe"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="cwpe"  value="2" />
+                                                        wire:model="cwpe"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="cwpe"  value="1" />
+                                                        wire:model="cwpe"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -476,27 +477,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="mat"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="mat"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="mat"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="mat"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="mat"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="mat"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -510,27 +511,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="artc"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="artc"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="artc"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="artc"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="artc"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="artc"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -545,27 +546,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="atutl"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="atutl"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="atutl"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="atutl"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="atutl"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="atutl"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -579,27 +580,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="atpcdr"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="atpcdr"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="atpcdr"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="atpcdr"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="atpcdr"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="atpcdr"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -614,27 +615,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="atlaacs"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="atlaacs"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="atlaacs"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="atlaacs"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="atlaacs"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="atlaacs"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -648,27 +649,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="auodf"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="auodf"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="auodf"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="auodf"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="auodf"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="auodf"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -682,32 +683,32 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="side_laboratories"  value="6"  required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="side_laboratories"  value="5"  required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="side_laboratories"  value="4"  required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="side_laboratories"  value="3"  required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="side_laboratories"  value="2"  required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="side_laboratories"  value="1" required="true" />
 
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="px-4 py-4 text-sm font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap">
+                                                    <td class="px-4 py-4 text-sm font-medium text-gray-900 dark:text-gray-200 whitespace-normal">
                                                         <div class="flex items-center justify-end gap-x-3">
 
 
@@ -716,27 +717,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="laboratory_request"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="laboratory_request"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="laboratory_request"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="laboratory_request"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="laboratory_request"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="laboratory_request"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -750,27 +751,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="radiology_request"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="radiology_request"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="radiology_request"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="radiology_request"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="radiology_request"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="radiology_request"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -784,27 +785,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="follow_up_of_results"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="follow_up_of_results"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="follow_up_of_results"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="follow_up_of_results"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="follow_up_of_results"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="follow_up_of_results"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -819,27 +820,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="punctuality"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="punctuality"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="punctuality"  value="4" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="punctuality"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="punctuality"  value="2" required="true" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="punctuality"  value="1" required="true" />
 
                                                     </td>
                                                 </tr>
@@ -853,27 +854,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="availability"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="availability"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="availability"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="availability"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="availability"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="availability"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -887,27 +888,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="endurance"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="endurance"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="endurance"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="endurance"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="endurance"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="endurance"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -921,27 +922,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="personal_comportment"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="personal_comportment"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="personal_comportment"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="personal_comportment"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="personal_comportment"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="personal_comportment"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -955,27 +956,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="neatness"  value="6" required="true"/> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="neatness"  value="5" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="neatness"  value="4" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="neatness"  value="3" required="true"/>
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="neatness"  value="2" required="true"/>
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="neatness"  value="1" required="true"/>
 
                                                     </td>
                                                 </tr>
@@ -989,27 +990,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="sense_of_responsibility"  value="6" required="true" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="sense_of_responsibility"  value="5" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="sense_of_responsibility"  value="4" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="sense_of_responsibility"  value="3" required="true" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="sense_of_responsibility"  value="2" required="true" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="sense_of_responsibility"  value="1" required="true" />
 
                                                     </td>
                                                 </tr>
@@ -1023,27 +1024,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="interpersonal"  value="6" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="interpersonal"  value="5" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="interpersonal"  value="4" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="interpersonal"  value="3" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="interpersonal"  value="2" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="interpersonal"  value="1" />
 
                                                     </td>
                                                 </tr>
@@ -1057,27 +1058,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="rwha"  value="6" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="rwha"  value="5" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="rwha"  value="4" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="rwha"  value="3" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="rwha"  value="2" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="rwha"  value="1" />
 
                                                     </td>
                                                 </tr>
@@ -1091,27 +1092,27 @@
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="6" /> </td>
+                                                        wire:model="overall_evaluation"  value="6" /> </td>
                                                     <td class="px-4 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="5" />
+                                                        wire:model="overall_evaluation"  value="5" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="4" />
+                                                        wire:model="overall_evaluation"  value="4" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="3" />
+                                                        wire:model="overall_evaluation"  value="3" />
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="2" />
+                                                        wire:model="overall_evaluation"  value="2" />
 
                                                     </td>
                                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                                         <x-input class="block m-2 focus:border-blue-500"  type="radio"
-                                                        wire:model="permissions"  value="1" />
+                                                        wire:model="overall_evaluation"  value="1" />
 
                                                     </td>
                                                 </tr>
@@ -1122,37 +1123,36 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                 </div>
                 <div class="w-full px-8 py-3">
                     <label for="comment" class="block text-sm font-medium leading-6 text-gray-900">General Comments (including what you think he/she has acquired in the course of his/her internship with you) </label>
                     <div class="mt-2">
-                    <textarea rows="4" name="comment" id="comment" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                    <textarea rows="4" wire:model="general_comments" id="comment" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
                     </div>
                 </div>
                 <div class="w-full px-8 py-3" x-data="{ comment_show: false }">
-                    <x-label>Do you consider him/her a fit and proper person to be entered on the full register of the Medical and Dental Councill of Nigeria></x-label>
-                    <div class="px-12 flex justify-between items-center">
+                    <x-label>Do you consider him/her a fit and proper person to be entered on the full register of the Medical and Dental Councill of Nigeria</x-label>
+                    <div class="px-12 flex items-center justify-around gap-5 mb-6">
                         <div class="flex items-center justify-center gap-3">
                             <x-label for="suitable" value="Yes" />
-                                <x-input class="block focus:border-blue-500" id="suitable" type="radio"
-                                    wire:model="permissions"  value="1" />
+                                <x-input class="block focus:border-green-500" id="suitable" type="radio"
+                                    wire:model="is_fit"  value="1" x-on:change="
+                                    comment_show = false;
+                                    "/>
                         </div>
                         <div class="flex items-center justify-center gap-3">
                             <x-label for="suitable-no"  value="No" />
                                 <x-input class="block focus:border-blue-500" id="suitable-no" type="radio"
-                                    wire:model="permissions"  value="0" />
+                                    wire:model="is_fit"  value="0" x-on:change="
+                                    comment_show = true;
+                                    "/>
                         </div>
 
                     </div>
                     <div x-show="comment_show">
-                    <label for="comment" class="block text-sm font-medium leading-6 text-gray-900">If No, give reasons and make further recommendations</label>
+                    <label for="if_is_fit_is_no_comment" class="block text-sm font-medium leading-6 text-gray-900">If No, give reasons and make further recommendations</label>
                     <div class="mt-2">
-                    <textarea rows="4" name="comment" id="comment" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                        <textarea rows="4" wire:model="if_is_fit_is_no_comment" id="if_is_fit_is_no_comment" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                     </div>
                 </div>
                 </div>

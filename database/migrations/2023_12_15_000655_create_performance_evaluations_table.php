@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('assessed_by');
             $table->tinyInteger('kabms')->comment('knowledge and application of Basic Medical Science');
             $table->tinyInteger('kaacs')->comment('knowledge and application of clinical Science');
-            $table->tinyInteger('kpbms')->comment('knowledge and application of clinical Science');
+            $table->tinyInteger('kpbms')->comment('knowledge of pathological Basis of Medical practice');
+            $table->tinyInteger('locc')->comment('level of clinical competence');
             $table->tinyInteger('mr_ht')->comment('Medica; Records- History Taking');
             $table->tinyInteger('mr_aw')->comment('Medica; Records- admission work');
             $table->tinyInteger('mr_pn')->comment('Medica; Records- Progress note');
@@ -25,11 +26,13 @@ return new class extends Migration
             $table->tinyInteger('diagnostic_acumen')->comment('Diagnostic Acumen');
             $table->tinyInteger('kaat')->comment('knowledge and application of Therapeutics');
             $table->tinyInteger('iwomoht')->comment('Interaction with other members of the team');
+            $table->tinyInteger('cwpe')->comment('Compliance With Proffesional Ethics');
             $table->tinyInteger('artc')->comment('Appropriate response to criticism');
             $table->tinyInteger('atutl')->comment('Ability to use the library');
             $table->tinyInteger('atpcdr')->comment('Ability to present cases during rounds');
             $table->tinyInteger('atlaacs')->comment('Ability to learn and apply clinical skills');
             $table->tinyInteger('auodf')->comment('Appropriate use of diagnostic facilities');
+            $table->tinyInteger('ma')->comment('Appropriate use of diagnostic facilities');
             $table->tinyInteger('side_laboratories')->comment('side laboratory');
             $table->tinyInteger('laboratory_request')->comment('laboratory request');
             $table->tinyInteger('radiology_request')->comment('laboratory request');

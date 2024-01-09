@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\InternDoctor;
+use App\Models\PostingRecord;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -18,31 +19,33 @@ class Performance extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         return $table
-                ->query(InternDoctor::query())
+                ->query(PostingRecord::query()->where('posting_status', '0'))
                 ->columns([
 
                     Tables\Columns\TextColumn::make('index')
                         ->rowIndex(isFromZero: false),
-                    Tables\Columns\ImageColumn::make('avatar')
+                    Tables\Columns\ImageColumn::make('internDoctor.avatar')
                         ->circular()
-                        ->defaultImageUrl(url('/images/fmc_logo.png')),
-                    Tables\Columns\TextColumn::make('fullname')
-                        ->label("Full Name"),
-                    Tables\Columns\TextColumn::make('email')
-                        ->label('Email Address'),
-                    Tables\Columns\TextColumn::make('phone')
-                        ->label('Phone Number'),
+                        ->defaultImageUrl(url('/images/no-image.png')),
+                    Tables\Columns\TextColumn::make('internDoctor.fullname')
+                        ->label("Intern Name"),
+                    Tables\Columns\TextColumn::make('department.name')
+                        ->label('Department'),
+                    Tables\Columns\TextColumn::make('posting_start_date')
+                        ->label('From Date'),
+                    Tables\Columns\TextColumn::make('posting_end_date')
+                        ->label('To Date'),
                     Tables\Columns\TextColumn::make('training_status')
                         ->badge()
                         ->color(fn (string $state): string => match ($state) {
-                            'Registered' => 'gray',
-                            'In Training' => 'warning',
-                            'Completed Training' => 'success',
+                            'Posted' => 'gray',
+                            'Active' => 'warning',
+                            'Done' => 'success',
                         })
                 ])
                 ->actions([
                     Tables\Actions\Action::make('evaluate')
-                    ->url(fn (InternDoctor $record): string => route('evaluate.show', $record))
+                    ->url(fn (PostingRecord $record): string => route('evaluate.show', $record))
                     ->icon('heroicon-m-document')
                 ]);
 

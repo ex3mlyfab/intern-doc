@@ -23,6 +23,8 @@ class PerformanceEvaluation extends Model
         'diagnostic_acumen',
         'kaat',
         'iwomoht',
+         'cwpe',
+         'mat',
         'artc',
         'atutl',
         'atpcdr',
