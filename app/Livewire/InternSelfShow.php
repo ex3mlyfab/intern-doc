@@ -56,13 +56,13 @@ class InternSelfShow extends Component implements HasForms, HasInfolists, HasTab
             ->actions([
 
                 Tables\Actions\Action::make('performance_evaluation')
-                    ->url(fn (PostingRecord $record): string => route('evaluate.review', $record))
+                    ->url(fn (PostingRecord $record): string => route('pev.self', $record))
                     ->icon('heroicon-m-document')
                     ->hidden(fn (PostingRecord $record): bool => !$record->performaceEvaluation()->exists())
 
-                            
+
             ]);
-            
+
     }
     public function internInfolist(Infolist $infolist): Infolist
     {
@@ -110,7 +110,7 @@ class InternSelfShow extends Component implements HasForms, HasInfolists, HasTab
                                                 ])
 
                             ])
-                            
+
                             ;
     }
 }

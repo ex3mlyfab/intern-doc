@@ -41,7 +41,7 @@ class Permission extends Component implements HasForms, HasTable
                             ->label('Permission Name')
                             ->columnSpanFull(),
                         Forms\Components\Hidden::make('guard_name')
-                            ->default('sanctum')
+                            ->default('web')
                     ])
             ])
             ->headerActions([
@@ -53,7 +53,7 @@ class Permission extends Component implements HasForms, HasTable
                             ->label('Permission Name')
                             ->columnSpanFull(),
                             Forms\Components\Hidden::make('guard_name')
-                            ->default('sanctum')
+                            ->default('web')
                     ])
                     ->successNotificationTitle('Permission created Successfully')
                     ]);

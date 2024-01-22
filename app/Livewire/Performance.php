@@ -30,8 +30,12 @@ class Performance extends Component implements HasForms, HasTable
                     Tables\Columns\ImageColumn::make('internDoctor.avatar')
                         ->circular()
                         ->defaultImageUrl(url('/images/no-image.png')),
-                    Tables\Columns\TextColumn::make('internDoctor.fullname')
-                        ->label("Intern Name"),
+                    Tables\Columns\TextColumn::make('internDoctor.surname')
+                        ->label("Surname")
+                        ->searchable(),
+                    Tables\Columns\TextColumn::make('internDoctor.first_name')
+                        ->label("first_name")
+                        ->searchable(),
                     Tables\Columns\TextColumn::make('department.name')
                         ->label('Department'),
                     Tables\Columns\TextColumn::make('posting_start_date')
@@ -62,15 +66,15 @@ class Performance extends Component implements HasForms, HasTable
                                 $data['accepted_by'] = Auth::user()->id;
                                 $data['posting_status'] = 1;
                             }
-                           
+
                             $record->update($data);
-                     
+
                             return $record;
                         }),
                     Tables\Actions\Action::make('evaluate')
                         ->url(fn (PostingRecord $record): string => route('evaluate.show', $record))
                         ->icon('heroicon-m-document')
-                        ->hidden(fn (PostingRecord $record): bool => $record->posting_status != 0 && $record->posting_end_date < now())
+                        ->hidden(fn (PostingRecord $record): bool => $record->posting_status == 0 )
 
                 ]);
 

@@ -11,9 +11,10 @@
     <form wire:submit="save">
         {{ $this->form }}
 
-        <div class="flex py-2 justify-center align-items-center">
-            <x-button type="submit" class="w--5xl self-center" >
-                <x-filament::loading-indicator class="h-5 w-5" /> Submit
+        <div class="flex py-2 justify-center align-items-center" x-data="{submitting:false}">
+            <x-button type="submit" class="w--5xl self-center" x-on:click="submitting = true">
+
+                <x-filament::loading-indicator class="h-5 w-5" x-show="submitting"/> Submit
             </x-button>
         </div>
     </form>

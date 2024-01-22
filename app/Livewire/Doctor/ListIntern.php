@@ -23,6 +23,7 @@ class ListIntern extends Component implements HasForms, HasTable
     {
         return $table
             ->query(InternDoctor::query())
+            ->searchable()
             ->columns([
                 Tables\Columns\TextColumn::make('index')
                 ->rowIndex(isFromZero: false)
@@ -31,13 +32,18 @@ class ListIntern extends Component implements HasForms, HasTable
                     ->circular()
                     ->defaultImageUrl(url('/images/no-image.png')),
 
-                Tables\Columns\TextColumn::make('fullname')
-                    ->label("Full Name")
-                    ->searchable(isIndividual: true, isGlobal: false),
+                Tables\Columns\TextColumn::make('surname')
+                    ->label("Surname")
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('first_name')
+                    ->label("First Name")
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('email')
-                    ->label('Email Address'),
+                    ->label('Email Address')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
-                    ->label('Phone Number'),
+                    ->label('Phone Number')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('training_status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {

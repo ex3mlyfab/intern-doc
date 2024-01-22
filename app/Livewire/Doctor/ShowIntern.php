@@ -51,14 +51,9 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
 
                 Tables\Actions\EditAction::make()
                     ->form([
-                        Forms\Components\Grid::make(3)
+                        Forms\Components\Section::make(fn (PostingRecord $record): string =>"Department ". $record->department->name)
                         ->schema([
-                            Forms\Components\Select::make('department_id')
-                                ->relationship(name: 'department', titleAttribute: 'name',
-                                modifyQueryUsing: fn (Builder $query) => $query->where('name', '!=', 'Admin')->whereDoesntHave('postingRecords', function (Builder $query) {
-                                    $query->where('intern_doctor_id', $this->record->id);
-                                    }))
-                                ->required(),
+
                             Forms\Components\DatePicker::make('posting_start_date')
                                 ->label('From Date')
                                 ->required(),
@@ -71,25 +66,28 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                             Forms\Components\Hidden::make('created_by')
                                 ->default(auth()->user()->id)
                         ])
+                        ->columns(2)
 
 
                     ])
+                    ->hidden( fn (PostingRecord $record): bool => $record->posting_status !=1)
                     ->closeModalByClickingAway(false),
                     Tables\Actions\DeleteAction::make()
-                    ->successRedirectUrl(route('doctor.show', $this->record->id)),
+                        ->hidden(fn (PostingRecord $record): bool => $record->posting_status !=1)
+                        ->successRedirectUrl(route('doctor.show', $this->record->id)),
                     Tables\Actions\Action::make('performance_evaluation')
-                                ->url(fn (PostingRecord $record): string => route('evaluate.review', $record))
-                                ->icon('heroicon-m-document')
-                                ->hidden(fn (PostingRecord $record): bool => !$record->performaceEvaluation()->exists())
+                            ->url(fn (PostingRecord $record): string => route('evaluate.review', $record))
+                            ->icon('heroicon-m-document')
+                            ->hidden(fn (PostingRecord $record): bool => !$record->performaceEvaluation()->exists())
 
-                        
+
             ])
-            ->headerActions([ 
+            ->headerActions([
                 Tables\Actions\CreateAction::make()
                     ->model(PostingRecord::class)
                     ->form([
 
-                                Forms\Components\Grid::make(3)
+                            Forms\Components\Grid::make(3)
                                     ->schema([
                                         Forms\Components\Select::make('department_id')
                                             ->relationship(name: 'department', titleAttribute: 'name',
@@ -112,6 +110,14 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
 
 
                     ])
+                    ->after(function (Model $record) {
+                        // Runs after the form fields are saved to the database.
+                        if($record->internDoctor->intern_status == 0){
+                                $record->internDoctor()->update([
+                                    'intern_status' => 1
+                                ]);
+                        }
+                    })
                     // // ->mutateFormDataUsing(function (array $data): array {
 
                     // //    foreach($data['posting_records'] as $posting => $value){
@@ -156,6 +162,7 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                                             ->columns(3)
                                             ->schema([
                                                 Infolists\Components\ImageEntry::make('profile_photo_path')
+                                                    ->label(' ')
                                                     ->defaultImageUrl(url('/images/no-image.png'))
                                                     ->columnSpanFull()
                                                     ->extraAttributes(['class' => 'flex items-center justify-center'])

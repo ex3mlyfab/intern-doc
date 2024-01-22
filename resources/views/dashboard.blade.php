@@ -20,9 +20,20 @@
                     <div class="m-5">
                          @livewire('stats-overview')
                     </div>
-                   
 
-                    
+                    {{-- <div class="border-2 border-blue-500 shadow-lg rounded-lg p-5">
+                                {{Auth::user()->roles->first()}}
+                        <ul>
+                            @foreach (Auth::user()->roles as $item)
+                                @foreach ($item->permissions as $doll)
+                                <li>{{$doll->name}}</li>
+                                @endforeach
+
+                            @endforeach
+
+                        </ul>
+                    </div> --}}
+
                 </div>
             </div>
         </div>

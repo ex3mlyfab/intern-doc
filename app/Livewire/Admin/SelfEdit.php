@@ -16,7 +16,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
 
-class EditUser extends Component
+class SelfEdit extends Component
 {
     use WithFileUploads;
     public ?array $data = [];
@@ -119,7 +119,7 @@ class EditUser extends Component
 
     public function render()
     {
-        return view('livewire.admin.edit-user')->layout('layouts.app');
+        return view('livewire.admin.self-edit')->layout('layouts.app');
     }
     public function removeQualification($index)
     {
