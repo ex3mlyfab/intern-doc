@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -71,10 +73,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
-    public function admin(): HasOne
+    public function department(): HasOne
     {
-        return $this->hasOne(Admin::class);
+        return $this->hasOne(Department::class);
+    }
+    public function admin(): MorphOne
+    {
+        return $this->morphOne(Admin::class, 'adminable');
     }
 
     public function getDepartmentNameAttribute(): string
@@ -89,14 +94,14 @@ class User extends Authenticatable
 
     }
 
-    public function qualifications(): HasMany
+    public function qualifications(): MorphMany
     {
-        return $this->hasMany(Qualification::class);
+        return $this->morphMany(Qualification::class, 'qualifiable');
     }
 
     public function getFullnameAttribute()
     {
-        return ucwords($this->surname. ' '. $this->first_name. ' '. $this->middle_name);
+        return ucwords($this->title.' '.$this->surname. ' '. $this->first_name. ' '. $this->middle_name);
     }
 
 

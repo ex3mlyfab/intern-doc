@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id');
+            $table->uuidMorphs('qualifiable');
             $table->string('name');
             $table->date('qualification_date');
             $table->smallInteger('type')->default(1);

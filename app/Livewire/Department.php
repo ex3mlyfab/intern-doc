@@ -13,6 +13,7 @@ use Filament\Forms;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class Department extends Component implements HasForms, HasTable
 {
@@ -25,30 +26,60 @@ class Department extends Component implements HasForms, HasTable
             ->query(ModelsDepartment::query())
             ->columns([
                 Tables\Columns\TextColumn::make('index')
+                    ->label('S/N')
                     ->rowIndex(isFromZero: false),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(isIndividual: true, isGlobal: false),
+                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('user.fullname')
+                    ->label('Supervisor')
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
+                    ->slideOver()
                     ->form([
                         Forms\Components\TextInput::make('name')
                             ->required()
-                            ->label('Department Name')
-                            ->columnSpanFull()
+                            ->label('Department Name'),
+                        Forms\Components\Select::make('type')
+                            ->required()
+                            ->options([
+                                'Intern' => 'Intern',
+                                'Admin' => 'Admin',
+                            ]),
+                        Forms\Components\Select::make('user_id')
+                            ->relationship('user')
+                            ->label('Select Supervisor')
+                            ->searchable(['first_name', 'surname', 'middle_name'])
+                            ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->first_name} {$record->middle_name} {$record->surname}")
+                            ->preload()
                     ])
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
                     ->model(ModelsDepartment::class)
+                    ->slideOver()
                     ->form([
                         Forms\Components\TextInput::make('name')
                             ->required()
-                            ->label('Department Name')
-                            ->columnSpanFull()
+                            ->unique()
+                            ->label('Department Name'),
+                        Forms\Components\Select::make('type')
+                            ->required()
+                            ->options([
+                                'Intern' => 'Intern',
+                                'Admin' => 'Admin',
+                            ]),
+                        Forms\Components\Select::make('user_id')
+                            ->relationship('user')
+                            ->label('Select Supervisor')
+                            ->searchable(['first_name', 'surname', 'middle_name'])
+                            ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->first_name} {$record->middle_name} {$record->surname}")
+                            ->preload()
+
                     ])
                     ->successNotificationTitle('Department created Successfully')
                     ]);

@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 @if(Auth::guard('web')->check())
-                    @if (Auth::user()->roles->first()->name === "Admin-Officer" )
+                    @if (Auth::user()->roles->first()->name === 'Super-Admin' || Auth::user()->roles->first()->name === 'Admin Officer')
                         <div class="relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent cursor-pointer ms-3 hover:border-gray-500">
                                 <x-dropdown align="left">
                                 <x-slot name="trigger">
@@ -64,6 +64,21 @@
                     @can('view-performance')
                     <x-nav-link href="{{ route('evaluate.list') }}" :active="request()->routeIs('evaluate.list')">
                         {{ __('Evaluate Interns') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('show-locum')
+                    <x-nav-link href="{{ route('locum.list') }}" :active="request()->routeIs('locum.list')">
+                        {{ __('Staff Report') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('show-locum')
+                    <x-nav-link href="{{ route('attendance.list') }}" :active="request()->routeIs('attendance.list')">
+                        {{ __('Take Attendance') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('show-locum')
+                    <x-nav-link href="{{ route('generate.report') }}" :active="request()->routeIs('generate.report')">
+                        {{ __('Generate Report') }}
                     </x-nav-link>
                     @endcan
 
@@ -199,6 +214,22 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @can('list-intern')
+            <x-responsive-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
+                {{ __('Intern Doctors') }}
+            </x-responsive-nav-link>
+            @endcan
+            @can('list-intern')
+            <x-responsive-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
+                {{ __('Intern Doctors') }}
+            </x-responsive-nav-link>
+            @endcan
+            @can('list-intern')
+            <x-responsive-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
+                {{ __('Intern Doctors') }}
+            </x-responsive-nav-link>
+            @endcan
+
         </div>
 
         <!-- Responsive Settings Options -->

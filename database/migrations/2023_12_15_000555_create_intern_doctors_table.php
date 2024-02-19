@@ -28,9 +28,11 @@ return new class extends Migration
             $table->string('mdcan_reg_number')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->date('mdcan_reg_date')->nullable();
+            $table->string('file_no')->nullable();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->tinyInteger('intern_status')->default(0);
+            $table->string('full_name')->virtualAs("CONCAT(first_name, ' ',middle_name, ' ', surname)" );
             $table->timestamps();
         });
     }

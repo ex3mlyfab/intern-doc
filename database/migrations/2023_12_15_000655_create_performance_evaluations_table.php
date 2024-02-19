@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('performance_evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('posting_record_id');
-            $table->foreignUuid('assessed_by');
+            $table->foreignUuid('assessor_id');
             $table->tinyInteger('kabms')->comment('knowledge and application of Basic Medical Science');
             $table->tinyInteger('kaacs')->comment('knowledge and application of clinical Science');
             $table->tinyInteger('kpbms')->comment('knowledge of pathological Basis of Medical practice');

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary(); 
+            $table->uuid('id')->primary();
+            $table->string('title', 125)->nullable();
             $table->string('surname');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true)->nullable();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('fullname_virtual')->virtualAs("CONCAT(first_name, ' ',middle_name, ' ', surname)" );
             $table->timestamps();
         });
     }

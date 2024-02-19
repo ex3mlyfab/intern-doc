@@ -3,27 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
-use function PHPUnit\Framework\isNull;
-
-class Doctor extends Authenticatable
+class Doctor extends Model
 {
-    use HasApiTokens;
+
     use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-    use HasRoles;
+
 
     /**
      * The attributes that are mass assignable.
@@ -31,49 +21,35 @@ class Doctor extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'surname',
-        'first_name',
-        'middle_name',
-        'email',
-        'password',
+        'designation',
+        'department_id',
+        'posting_id',
+        'is_active',
+        'employment_type',
+        'name',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
-
-    
-    public function getFullnameAttribute()
+    public function department(): BelongsTo
     {
-        return ucwords($this->surname. ' '. $this->first_name. ' '. $this->middle_name);
+        return $this->belongsTo(Department::class);
     }
 
+    public function posting(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'posting_id');
+    }
+
+    public function monthlyReports(): HasMany
+    {
+        return $this->hasMany(MonthlyReport::class);
+    }
+
+    protected function getlatestReportAttribute()
+    {
+        if($this->monthlyReports()->exists()){
+            return date_format($this->monthlyReports->first()->assessment_period, 'm/y') == date('m/y');
+       }
+       return false;
+    }
 
 }

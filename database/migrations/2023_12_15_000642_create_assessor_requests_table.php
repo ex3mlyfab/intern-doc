@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('intern_doctors', function (Blueprint $table) {
-            //
+        Schema::create('assessor_requests', function (Blueprint $table) {
+            $table->id();
+            $table->string('token');
+            $table->string('email');
+            $table->foreignId('posting_record_id')->constrained('posting_records');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('intern_doctors', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('assessor_requests');
     }
 };

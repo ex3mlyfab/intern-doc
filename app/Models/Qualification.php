@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Qualification extends Model
 {
     use HasFactory;
 
     protected $fllable = [
-        'user_id',
+        'qualifiable_type',
+        'qualifiable_id',
         'name',
         'qualification_date',
         'type'
@@ -21,8 +23,8 @@ class Qualification extends Model
         'qualification_date' => 'datetime',
     ];
 
-    public function user(): BelongsTo
+    public function qualifiable(): MorphTo
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
     }
 }

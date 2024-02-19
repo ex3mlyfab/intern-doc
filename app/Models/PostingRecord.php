@@ -55,7 +55,10 @@ class PostingRecord extends Model
     {
         return $this->belongsTo(Department::class);
     }
-
+    public function assessorRequest(): HasOne
+    {
+        return $this->hasOne(AssessorRequest::class, 'posting_record_id');
+    }
     public function getTrainingStatusAttribute(): string
     {
         switch($this->posting_status) {

@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\InternDoctor;
 use App\Models\PostingRecord;
+use Carbon\Carbon;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Infolists\Concerns\InteractsWithInfolists;
@@ -17,6 +18,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Filament\Tables;
 use Filament\Forms;
+use Filament\Forms\Set;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -56,9 +58,11 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
 
                             Forms\Components\DatePicker::make('posting_start_date')
                                 ->label('From Date')
+                                ->live()
+                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('posting_end_date', now()->parse($state)->addDays(82)->toDateString()))
                                 ->required(),
                             Forms\Components\DatePicker::make('posting_end_date')
-                                ->after('posting_start_date')
+                                ->readOnly()
                                 ->label('To Date')
                                 ->required(),
                             Forms\Components\Hidden::make('intern_doctor_id')
@@ -97,9 +101,11 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                                             ->required(),
                                         Forms\Components\DatePicker::make('posting_start_date')
                                             ->label('From Date')
+                                            ->live()
+                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('posting_end_date', now()->parse($state)->addDays(82)->toDateString()))
                                             ->required(),
                                         Forms\Components\DatePicker::make('posting_end_date')
-                                            ->after('posting_start_date')
+                                            ->readOnly()
                                             ->label('To Date')
                                             ->required(),
                                         Forms\Components\Hidden::make('intern_doctor_id')

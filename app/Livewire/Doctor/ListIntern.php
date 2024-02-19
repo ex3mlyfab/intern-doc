@@ -31,7 +31,6 @@ class ListIntern extends Component implements HasForms, HasTable
                 Tables\Columns\ImageColumn::make('avatar')
                     ->circular()
                     ->defaultImageUrl(url('/images/no-image.png')),
-
                 Tables\Columns\TextColumn::make('surname')
                     ->label("Surname")
                     ->searchable(),

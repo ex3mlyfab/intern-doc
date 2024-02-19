@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id');
+            $table->uuidMorphs('adminable');
             $table->foreignId('department_id');
             $table->string('phone', 50);
             $table->string('mdcan_regno')->nullable();

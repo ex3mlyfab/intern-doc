@@ -58,6 +58,6 @@ class PerformanceEvaluation extends Model
 
     public function assessedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'assessed_by');
+        return $this->belongsTo(Assessor::class, 'assessor_id');
     }
 }

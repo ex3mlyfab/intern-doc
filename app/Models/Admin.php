@@ -11,7 +11,8 @@ class Admin extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'adminable_type',
+        'adminable_id',
         'department_id',
         'phone',
         'mdcan_regno',

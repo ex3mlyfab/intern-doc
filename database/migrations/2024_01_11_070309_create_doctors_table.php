@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('surname');
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name');
+            $table->string('designation');
+            $table->string('employment_type');
+            $table->string('bank_name')->nullable();
+            $table->string('account_number')->nullable();
+            $table->foreignId('department_id');
+            $table->foreignId('posting_id');
             $table->boolean('is_active')->default(true)->nullable();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
     }
