@@ -80,7 +80,7 @@ class CreateLocum extends Component implements HasForms
         ->success()
         ->send();
         $this->submitting = false;
-        redirect()->route('list.locum');
+        redirect()->route('locum.list');
     }
 
     public function render(): View

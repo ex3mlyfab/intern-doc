@@ -8,6 +8,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Forms;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 
@@ -25,7 +26,13 @@ class MonthlyReport extends Component implements HasForms
                         Forms\Components\Select::make('select')
                             ->label('Select Report Month')
                             ->options(
-                                ModelsMonthlyReport::distinct('assessment_period')->pluck('assessment_period', 'assessment_period')
+                                ModelsMonthlyReport::query(function (Builder $query){
+                                    $query->select('assessment_period')
+                                        ->transform(fn ($row) => [
+                                             Carbon::parse($row->assessment_period)->format('M-Y')
+                                        ]);
+
+                                })->distinct('assessment_period')->pluck('assessment_period', 'assessment_period')
                             )
                     ])
             ])

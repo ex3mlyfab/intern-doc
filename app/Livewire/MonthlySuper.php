@@ -59,7 +59,7 @@ class MonthlySuper extends Component implements HasForms, HasTable
 
             Tables\Actions\EditAction::make()
                 ->label('Mark Attendance')
-               
+
                 ->form([
                     Forms\Components\Section::make(fn (Doctor $record): string =>"Mark attendance for ". $record->name . " on ". now()->format("M-Y"))
                     ->columns(2)
@@ -100,6 +100,7 @@ class MonthlySuper extends Component implements HasForms, HasTable
                 // ->successRedirectUrl(route('locum.list')), attendance.list
             ])
             ->emptyStateHeading('No record added yet')
+            ->striped()
             ->emptyStateDescription('Locum records appear here.');
     }
 }

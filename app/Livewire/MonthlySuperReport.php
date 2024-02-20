@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Filament\Exports\MonthlyReportExporter;
 use App\Models\MonthlyReport;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Actions\Exports\Models\Export;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -13,6 +14,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class MonthlySuperReport extends Component implements HasForms, HasTable
@@ -49,15 +51,43 @@ class MonthlySuperReport extends Component implements HasForms, HasTable
             Tables\Columns\TextColumn::make('response'),
             Tables\Columns\TextColumn::make('comment'),
             Tables\Columns\TextColumn::make('created_at')
-                ->label('Assessment Date')
-                ->date('d-M-Y'),
+                ->label('Assessment Date'),
             Tables\Columns\TextColumn::make('supervisor.fullname')
 
         ])
         ->headerActions([
             Tables\Actions\ExportAction::make()
                 ->exporter(MonthlyReportExporter::class)
-                ->fileName(fn (Export $export): string => "MonthlyReport-{$export->getKey()}.csv")
+                ->icon('heroicon-o-document-arrow-down')
+                ->color('success')
+                ->formats([
+                    ExportFormat::Xlsx,
+                ])
+                ->after(function() {
+                    $id = Export::latest()?->first()?->id;
+                    $path = 'filament_exports/' . $id . '/monthlyReport' . $id . '.xlsx';
+                     // you can change the filename based on the Exporter
+
+                    if (Storage::disk('public')->exists($path)) {
+                        return response()->stream(
+                            function () use ($path, $id) {
+                                $stream = Storage::disk('public')->readStream($path);
+                                fpassthru($stream);
+                                fclose($stream);
+
+                                Storage::disk('public')->deleteDirectory('filament_exports/' . $id);
+                                Export::truncate();
+                            },
+                            200,
+                            [
+                                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                'Content-Disposition' => 'attachment; filename=' . $id . '.xlsx',
+                            ]
+                        );
+                    } else {
+                        abort(404, 'file is corrupted');
+                    }
+                })
         ]);
     }
 }
