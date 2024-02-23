@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Doctor extends Model
 {
@@ -41,15 +42,24 @@ class Doctor extends Model
 
     public function monthlyReports(): HasMany
     {
-        return $this->hasMany(MonthlyReport::class);
+        return $this
+            ->hasMany(MonthlyReport::class)
+            ->orderByDesc('created_at');
     }
 
-    protected function getlatestReportAttribute()
+    public function latestMonthlyReport(): HasOne
+    {
+        return $this
+            ->hasOne(MonthlyReport::class)
+            ->latestOfMany();
+    }
+    public function getlatestReportAttribute()
     {
         if($this->monthlyReports()->exists()){
             return date_format($this->monthlyReports->first()->assessment_period, 'm/y') == date('m/y');
        }
        return false;
     }
+
 
 }

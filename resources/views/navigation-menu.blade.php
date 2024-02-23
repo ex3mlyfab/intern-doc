@@ -77,6 +77,11 @@
                     </x-nav-link>
                     @endcan
                     @can('show-locum')
+                    <x-nav-link href="{{ route('supervise') }}" :active="request()->routeIs('supervise')">
+                        {{ __('Take Attendance New') }}
+                    </x-nav-link>
+                    @endcan
+                    @can('show-locum')
                     <x-nav-link href="{{ route('generate.report') }}" :active="request()->routeIs('generate.report')">
                         {{ __('Generate Report') }}
                     </x-nav-link>

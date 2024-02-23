@@ -25,6 +25,7 @@ use App\Livewire\Permission;
 use App\Livewire\PevSelf;
 use App\Livewire\RolePermission;
 use App\Livewire\ShowEvaluation;
+use App\Livewire\SuperMonthly;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,6 +72,8 @@ Route::middleware([
     Route::get('/locum/{record}/edit', EditLocum::class)->name('locum.edit')->can('edit-locum');
     Route::get('/locum/{record}/view', ShowLocum::class)->name('locum.show')->can('show-locum');
     Route::get('/attendance', MonthlySuper::class)->name('attendance.list')->can('list-attendance');
+    Route::get('/super-monthly', SuperMonthly::class)->name('supervise')->can('list-attendance');
+
     Route::get('/generate-report', MonthlyReport::class)->name('generate.report')->can('list-attendance');
     //roles & permission Routes
     Route::get('/role/create', [MultiFormController::class, 'createRole'])->name('role.create')->can('create-role');

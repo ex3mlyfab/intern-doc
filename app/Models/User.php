@@ -93,7 +93,10 @@ class User extends Authenticatable
 
 
     }
-
+    public function attendanceReports(): HasMany
+    {
+        return $this->hasMany(AttendanceReport::class, 'supervisor_id');
+    }
     public function qualifications(): MorphMany
     {
         return $this->morphMany(Qualification::class, 'qualifiable');
