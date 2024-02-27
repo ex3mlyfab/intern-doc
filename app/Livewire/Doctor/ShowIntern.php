@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Livewire\Doctor;
+
+use App\Models\Accomodation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\InternDoctor;
@@ -18,6 +20,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Filament\Tables;
 use Filament\Forms;
+use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -32,6 +35,9 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
         return view('livewire.doctor.show-intern')->layout('layouts.app');
     }
 
+    public function createAccomodation(){
+        dd($this->form->getState());
+    }
     public function table(Table $table): Table
     {
         return $table

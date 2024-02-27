@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -55,7 +56,7 @@ class InternDoctor extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+
     public function postingRecords(): HasMany
     {
         return $this->hasMany(PostingRecord::class);
@@ -79,6 +80,15 @@ class InternDoctor extends Authenticatable
                 return "Completed Training";
                 break;
         }
+    }
+    public function accomodationCharges(): HasMany
+    {
+        return $this->hasMany(AccomodationCharge::class);
+    }
+
+    public function assignAccomodation(): HasOne
+    {
+        return $this->hasOne(AssignAccomodation::class);
     }
 }
 

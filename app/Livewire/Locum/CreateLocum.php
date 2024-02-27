@@ -69,7 +69,7 @@ class CreateLocum extends Component implements HasForms
 
     public function create(): void
     {
-        $this->submitting =true;
+
         $data = $this->form->getState();
 
         $record = Doctor::create($data);
@@ -79,7 +79,7 @@ class CreateLocum extends Component implements HasForms
         ->title('Details Saved successfully')
         ->success()
         ->send();
-        $this->submitting = false;
+        
         redirect()->route('locum.list');
     }
 

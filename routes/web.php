@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Intern\AuthenticateInternController;
 use App\Http\Controllers\MultiFormController;
+use App\Livewire\AccomodationSetting;
 use App\Livewire\Admin\CreateUser;
 use App\Livewire\Admin\EditUser;
 use App\Livewire\Admin\ListUser;
@@ -26,6 +27,7 @@ use App\Livewire\PevSelf;
 use App\Livewire\RolePermission;
 use App\Livewire\ShowEvaluation;
 use App\Livewire\SuperMonthly;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,6 +86,7 @@ Route::middleware([
     Route::get('/user/create',CreateUser::class)->name('user.create')->can('create-user');
     Route::get('/user/{record}/edit',EditUser::class)->name('user.edit')->can('edit-user');
     Route::get('/user/self-edit',SelfEdit::class)->name('self.edit');
+    Route::get('/accomodation', AccomodationSetting::class)->name('accomodation.list')->can('list-accomodation');
     //evaluation Routes
     Route::get('/pevaluation', Performance::class)->name('evaluate.list')->can('view-performance');
     Route::get('/pevaluation/{record}/show', EvaluateIntern::class)->name('evaluate.show')->can('show-evaluation');

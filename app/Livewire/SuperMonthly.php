@@ -18,21 +18,19 @@ class SuperMonthly extends Component
     public function store()
     {
         foreach($this->doctors as $doctor){
+            // dd($doctor->latest_report);
+            if(!$doctor->latest_report){
 
-            if($doctor->latest_report){
                 $doctor->monthlyReports()->create([
                     'supervisor_id' => auth()->user()->id,
-                    'assessment_period' => today()->format('m-Y'),
+                    'assessment_period' => now(),
                     'response' => (in_array($doctor->id, $this->clearedLocums) ?'Cleared':'Uncleared'),
                     'comment' => $this->locumComments[$doctor->id] ?? 'Unsatisfactory'
 
                 ]);
             }
         }
-        auth()->user()->attendanceReports()->create([
-            'response_marked' => count($this->doctors),
-            'assessment_period' => today()->format('m-Y'),
-        ]);
+
         Notification::make()
         ->title('Attendance Marked Successfully')
         ->success()
@@ -47,6 +45,7 @@ class SuperMonthly extends Component
            $this->locumComments[$id] = "Satisfactory";
         }else{
             $this->locumComments[$id]= '';
+            $this->selectAll = false;
         }
     }
     public function selectallClick(){

@@ -19,6 +19,8 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "lorisleiva/laravel-actions": "^2.7",
+        "psr/simple-cache": "*",
+        "pxlrbt/filament-excel": "^2.3",
         "spatie/laravel-pdf": "^1.0",
         "spatie/laravel-permission": "^6.2"
     },

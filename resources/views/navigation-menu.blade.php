@@ -36,6 +36,11 @@
                                             {{ __('Users') }}
                                         </x-dropdown-link>
                                     @endcan
+                                    @can('list-user')
+                                        <x-dropdown-link href="{{ route('accomodation.list')}}">
+                                            {{ __('Accomodation') }}
+                                        </x-dropdown-link>
+                                    @endcan
                                     @can('list-role')
                                         <x-dropdown-link href="{{ route('role.list')}}">
                                             {{ __('Role') }}
@@ -71,11 +76,11 @@
                         {{ __('Staff Report') }}
                     </x-nav-link>
                     @endcan
-                    @can('show-locum')
+                    {{-- @can('show-locum')
                     <x-nav-link href="{{ route('attendance.list') }}" :active="request()->routeIs('attendance.list')">
                         {{ __('Take Attendance') }}
                     </x-nav-link>
-                    @endcan
+                    @endcan --}}
                     @can('show-locum')
                     <x-nav-link href="{{ route('supervise') }}" :active="request()->routeIs('supervise')">
                         {{ __('Take Attendance New') }}

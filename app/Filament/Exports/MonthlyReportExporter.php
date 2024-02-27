@@ -24,7 +24,7 @@ class MonthlyReportExporter extends Exporter
             ExportColumn::make('doctor.employment_type')
                 ->label('Employment Type'),
             ExportColumn::make('doctor.posting.name')
-                ->label('Separtment Posted'),
+                ->label('Department Posted'),
             ExportColumn::make('doctor.bank')
                 ->label('Bank Name'),
             ExportColumn::make('doctor.account_number')

@@ -54,7 +54,7 @@
 
                                                     </td>
                                                     <td class="border border-slate-300 py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                        <span class="text-xl font-medium">{{ $item->name }}</span>
+                                                        <span class="text-md font-medium">{{ $item->name }}</span>
                                                     </td>
                                                     <td class="border border-slate-300 py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <span class="text-md">{{ $item->designation }}</span>
