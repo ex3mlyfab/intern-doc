@@ -95,7 +95,7 @@ Route::middleware([
 
 Route::group(['prefix'=>'intern','middleware'=>['intern:intern']],function(){
     Route::get('/login', [AuthenticateInternController::class, 'loginForm'])->name('intern.login');
-    Route::post('/login', [AuthenticateInternController::class, 'store'])->name('intern.login');
+    Route::post('/login', [AuthenticateInternController::class, 'store']);
 });
 
 

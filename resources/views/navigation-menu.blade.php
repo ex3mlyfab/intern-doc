@@ -221,7 +221,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @if (Auth::user()->roles->first()->name === 'Super-Admin' || Auth::user()->roles->first()->name === 'Admin Officer')
+         @if(Auth::guard('web')->check())
+        @if (Auth::user()->roles->first()->name === 'Super-Admin' || Auth::user()->roles->first()->name === 'Admin Officer')
             <div class="relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent cursor-pointer ms-3 hover:border-gray-500">
                     <x-dropdown align="left">
                     <x-slot name="trigger">
@@ -263,6 +264,7 @@
                     </x-slot>
                     </x-dropdown>
                 </div>
+        @endif
         @endif
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
