@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Filament\Forms\Components\HasManyRepeater;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -72,10 +73,23 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
+    public function postingRecords(): HasMany
+    {
+        return $this->hasMany(PostingRecord::class);
+    }
+    public function latestPostingRecord(): HasOne
+    {
+        return $this
+            ->hasOne(PostingRecord::class)
+            ->latestOfMany();
+    }
     public function department(): HasOne
     {
         return $this->hasOne(Department::class);
+    }
+    public function departments(): HasMany
+    {
+        return $this->hasmany(Department::class);
     }
     public function admin(): MorphOne
     {

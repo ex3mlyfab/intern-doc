@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('bed_no');
             $table->string('status');
+            $table->string('fullname')->virtualAs("CONCAT(name,' ', bed_no)" );
             $table->timestamps();
             $table->unique(['name', 'bed_no']);
         });

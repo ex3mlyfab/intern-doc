@@ -40,7 +40,11 @@ class AccomodationSetting extends Component implements HasForms, HasTable
                     ->slideOver()
                     ->form([
                         Forms\Components\TextInput::make('name')
-                            ->required(),
+                            ->required()
+                            ->unique('accomodations', 'name', null, 'bed_no',function($rule, Get $get){
+
+                                return $rule->where('bed_no', $get('bed_no'));
+                            }),
                         Forms\Components\Select::make('bed_no')
                             ->options([
                                 'bed A' => 'bed A',
@@ -50,7 +54,10 @@ class AccomodationSetting extends Component implements HasForms, HasTable
                                 'bed E' => 'bed E',
                                 'bed F' => 'bed F',
                             ])
-                            ->unique('bed_no', fn (Closure $get) => $get('name'))
+                            ->unique('accomodations', 'bed_no', null, 'name',function($rule, Get $get){
+
+                                return $rule->where('name', $get('name'));
+                            })
                            ->required(),
                         Forms\Components\Select::make('status')
                             ->options([
@@ -60,22 +67,6 @@ class AccomodationSetting extends Component implements HasForms, HasTable
                             ->required()
                             ->default('Available')
                     ])
-                    ->using(function (array $data) {
-                        if (Accomodation::where('name', $data['name'])->where('bed_no', $data['bed_no'])->exists())
-                        {
-                             Notification::make()
-                                ->title('Record Alreday Exists')
-                                ->danger()
-                                ->send();
-                            }else{
-                                 Accomodation::create($data);
-                                Notification::make()
-                                ->title('accomodation created successfully')
-                                ->success()
-                                ->send();
-                            }
-
-                    }),
             ]);
     }
     public function render()

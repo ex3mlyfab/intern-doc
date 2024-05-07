@@ -24,7 +24,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
+use Livewire\Attributes\On;
 class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
 {
     use InteractsWithForms, InteractsWithInfolists, InteractsWithTable;
@@ -34,10 +34,13 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
     {
         return view('livewire.doctor.show-intern')->layout('layouts.app');
     }
+    #[On('accomodationCreated')]
+    public function reloadPage()
+    {
+        $this->dispatch('$refresh');
 
-    public function createAccomodation(){
-        dd($this->form->getState());
     }
+
     public function table(Table $table): Table
     {
         return $table
@@ -85,6 +88,20 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                     Tables\Actions\DeleteAction::make()
                         ->hidden(fn (PostingRecord $record): bool => $record->posting_status !=1)
                         ->successRedirectUrl(route('doctor.show', $this->record->id)),
+                    Tables\Actions\CreateAction::make('request_evaluation')
+                            ->label('Request For Evaluation')
+                            ->form([
+                                Forms\Components\Section::make('Submit Request For Evaluation')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('full_name')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('email')
+                                            ->email()
+                                            ->required(),
+                                        Forms\Components\Hidden::make('token')
+                                            ->default(fn (PostingRecord $record):string => $record->id)
+                                    ])
+                            ]),
                     Tables\Actions\Action::make('performance_evaluation')
                             ->url(fn (PostingRecord $record): string => route('evaluate.review', $record))
                             ->icon('heroicon-m-document')

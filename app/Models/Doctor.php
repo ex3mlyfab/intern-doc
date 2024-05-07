@@ -55,8 +55,8 @@ class Doctor extends Model
     }
     public function getlatestReportAttribute()
     {
-        if($this->monthlyReports()->exists()){
-            return date_format($this->monthlyReports->first()->assessment_period, 'm/y') == date('m/y');
+        if($this->latestMonthlyReport()->exists()){
+            return date_format($this->latestMonthlyReport->assessment_period, 'm/y') == date('m/y');
        }
        return false;
     }

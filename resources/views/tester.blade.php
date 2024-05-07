@@ -1,11 +1,11 @@
 <x-guest-layout>
     <header class="relative">
-        <div  x-data="{ isOpen: false }" class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:flex lg:items-center lg:justify-between">
+        <div  x-data="{ isOpen: false }" class="container px-4 py-6 mx-auto sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
           <div class="flex items-center justify-between ">
             <a class="flex items-center -mx-1" href="#">
                 <x-application-mark></x-application-mark>
               <div class="mx-1 text-gray-700">
-                <h3 class="uppercase tracking-[0.15em] font-medium ">E-Intern</h3>
+                <h3 class="uppercase tracking-[0.15em] font-medium ">E-Supervision</h3>
                 <p class="text-xs italic ">Portal</p>
               </div>
             </a>
@@ -50,7 +50,7 @@
 
             <p class="max-w-lg mt-4 text-gray-500">Welcome to</p>
             <h1 class="max-w-xl font-serif text-4xl font-medium tracking-wide text-[#343D33] capitalize md:text-6xl ">Federal Medical Centre Abuja, <br>
-                E-Intern Portal
+                E-Supervision Portal
             </h1>
             <div class="mt-6 sm:flex sm:items-center">
               <a href="{{route('intern.login')}}" class="bg-[#475F45] hover:bg-[#475F45]/80 duration-300 transition-colors border-2 border-[#475F45] px-6 block text-center py-3 uppercase text-sm font-bold leading-4 tracking-widest text-white ">
@@ -76,13 +76,13 @@
             <a class="flex items-center -mx-2" href="#">
                 <x-application-mark></x-application-mark>
                 <div class="mx-1 text-gray-700">
-                    <h3 class="uppercase tracking-[0.15em] font-medium ">E-Intern</h3>
+                    <h3 class="uppercase tracking-[0.15em] font-medium ">E-Supervision</h3>
                     <p class="text-xs italic ">Portal</p>
                 </div>
             </a>
 
             <p class="max-w-lg mt-6 leading-relaxed text-white ">
-            E-intern portal
+            E-Supervision portal
             </p>
           </div>
 

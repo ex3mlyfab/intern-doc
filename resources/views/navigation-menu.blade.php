@@ -83,7 +83,7 @@
                     @endcan --}}
                     @can('show-locum')
                     <x-nav-link href="{{ route('supervise') }}" :active="request()->routeIs('supervise')">
-                        {{ __('Take Attendance New') }}
+                        {{ __('Take Attendance') }}
                     </x-nav-link>
                     @endcan
                     @can('show-locum')
@@ -221,22 +221,70 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if (Auth::user()->roles->first()->name === 'Super-Admin' || Auth::user()->roles->first()->name === 'Admin Officer')
+            <div class="relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent cursor-pointer ms-3 hover:border-gray-500">
+                    <x-dropdown align="left">
+                    <x-slot name="trigger">
+                        <div class="inline-flex items-center">
+                            {{ __('Settings')}}
+                            <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+
+                    </x-slot>
+                    <x-slot name="content">
+                        @can('create-department')
+                            <x-dropdown-link href="{{ route('department')}}">
+                                {{ __('Department') }}
+                            </x-dropdown-link>
+                        @endcan
+                        @can('list-user')
+                            <x-dropdown-link href="{{ route('user.list')}}">
+                                {{ __('Users') }}
+                            </x-dropdown-link>
+                        @endcan
+                        @can('list-user')
+                            <x-dropdown-link href="{{ route('accomodation.list')}}">
+                                {{ __('Accomodation') }}
+                            </x-dropdown-link>
+                        @endcan
+                        @can('list-role')
+                            <x-dropdown-link href="{{ route('role.list')}}">
+                                {{ __('Role') }}
+                            </x-dropdown-link>
+                        @endcan
+                        @can('list-permission')
+                        <x-dropdown-link href="{{ route('permission.list')}}">
+                            {{ __('Permissions') }}
+                        </x-dropdown-link>
+                        @endcan
+
+                    </x-slot>
+                    </x-dropdown>
+                </div>
+        @endif
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @can('list-intern')
-            <x-responsive-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
-                {{ __('Intern Doctors') }}
+            <x-responsive-nav-link href="{{ route('evaluate.list') }}" :active="request()->routeIs('evaluate.list')">
+                {{ __('Evaluate Interns') }}
+            </x-responsive-nav-link>
+            @endcan
+            @can('list-intern')
+            <x-responsive-nav-link href="{{ route('locum.list') }}" :active="request()->routeIs('locum.list')">
+                {{ __('Staff Report') }}
+            </x-responsive-nav-link>
+            @endcan
+            @can('list-intern')
+            <x-responsive-nav-link href="{{ route('generate.report') }}" :active="request()->routeIs('generate.report')">
+                {{ __('Monthly Report')}}
             </x-responsive-nav-link>
             @endcan
             @can('list-intern')
             <x-responsive-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
-                {{ __('Intern Doctors') }}
-            </x-responsive-nav-link>
-            @endcan
-            @can('list-intern')
-            <x-responsive-nav-link href="{{ route('list.intern') }}" :active="request()->routeIs('list.intern')">
-                {{ __('Intern Doctors') }}
+                {{ __('Intern Doctors List') }}
             </x-responsive-nav-link>
             @endcan
 

@@ -13,7 +13,7 @@ class Accomodation extends Model
     protected $fillable = [
         'name',
         'bed_no',
-        'status'
+        'status',
     ];
 
     public function accomodationCharges(): HasMany
@@ -21,8 +21,8 @@ class Accomodation extends Model
         return $this->hasMany(AccomodationCharge::class);
     }
 
-    public function accomodationHistories(): HasMany
+    public function assignAccomodation(): HasMany
     {
-        return $this->hasMany(AccomodationHistory::class);
+        return $this->hasMany(AssignAccomodation::class);
     }
 }

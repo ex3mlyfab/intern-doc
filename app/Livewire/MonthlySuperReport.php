@@ -56,38 +56,42 @@ class MonthlySuperReport extends Component implements HasForms, HasTable
 
         ])
         ->headerActions([
-            Tables\Actions\ExportAction::make()
-                ->exporter(MonthlyReportExporter::class)
-                ->icon('heroicon-o-document-arrow-down')
-                ->color('success')
-                ->formats([
-                    ExportFormat::Xlsx,
-                ])
-                ->after(function() {
-                    $id = Export::latest()?->first()?->id;
-                    $path = 'filament_exports/' . $id . '/monthlyReport' . $id . '.xlsx';
-                     // you can change the filename based on the Exporter
+            // Tables\Actions\ExportAction::make()
+            //     ->exporter(MonthlyReportExporter::class)
+            //     ->icon('heroicon-o-document-arrow-down')
+            //     ->color('success')
+            //     ->formats([
+            //         ExportFormat::Csv
+            //     ])
+            //     ->fileName(fn (Export $export): string => "monthlyReports-{$export->getKey()}.csv")
+            //     // ->after(function() {
+            //     //     $id = Export::latest()?->first()?->id;
+            //     //     $path = 'filament_exports/' . $id . '/monthlyReport' . $id . '.xlsx';
 
-                    if (Storage::disk('public')->exists($path)) {
-                        return response()->stream(
-                            function () use ($path, $id) {
-                                $stream = Storage::disk('public')->readStream($path);
-                                fpassthru($stream);
-                                fclose($stream);
 
-                                Storage::disk('public')->deleteDirectory('filament_exports/' . $id);
-                                Export::truncate();
-                            },
-                            200,
-                            [
-                                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                                'Content-Disposition' => 'attachment; filename=' . $id . '.xlsx',
-                            ]
-                        );
-                    } else {
-                        abort(404, 'file is corrupted');
-                    }
-                })
+            //     //     //  you can change the filename based on the Exporter
+
+            //     //     if (Storage::disk('public')->exists($path)) {
+            //     //         return response()->stream(
+            //     //             function () use ($path, $id) {
+            //     //                 $stream = Storage::disk('public')->readStream($path);
+            //     //                 fpassthru($stream);
+            //     //                 fclose($stream);
+
+            //     //                 Storage::disk('public')->deleteDirectory('filament_exports/' . $id);
+            //     //                 Export::truncate();
+            //     //             },
+            //     //             200,
+            //     //             [
+            //     //                 'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            //     //                 'Content-Disposition' => 'attachment; filename=' . $id . '.xlsx',
+            //     //             ]
+            //     //         );
+
+            //     //     } else {
+            //     //         abort(404, 'file is corrupted');
+            //     //     }
+            //     // })
         ]);
     }
 }

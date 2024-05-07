@@ -25,19 +25,19 @@ class MonthlySuper extends Component implements HasForms, HasTable
 
     public function render()
     {
-        return view('livewire.monthly-super')->layout('layouts.app');
+        return view('livewire.monthly-super');
     }
 
     public function table(Table $table): Table
     {
         return $table
-        ->query(Doctor::query()->where('posting_id', auth()->user()->department->id)->where('is_active', true))
+        ->query(Doctor::query()->where('posting_id', auth()->user()->departments->pluck('id'))->where('is_active', true))
         ->columns([
 
             Tables\Columns\TextColumn::make('name')
                 ->label("Full Name"),
             Tables\Columns\TextColumn::make('designation'),
-            Tables\Columns\TextColumn::make('monthlyReports.response')
+            Tables\Columns\TextColumn::make('latestMonthlyReport.response')
                 ->badge()
                 ->color(fn (string $state): string => match($state) {
                     'Present' => 'success',
@@ -52,7 +52,7 @@ class MonthlySuper extends Component implements HasForms, HasTable
                     '1' => 'success',
                     ''  => 'danger'
                 }),
-            Tables\Columns\TextColumn::make('monthlyReports.assessment_period')
+            Tables\Columns\TextColumn::make('latestMonthlyReport.assessment_period')
                 ->date('M-Y'),
             Tables\Columns\TextInputColumn::make('latestMonthlyReport.comment')
 
@@ -102,11 +102,6 @@ class MonthlySuper extends Component implements HasForms, HasTable
         //         // ->successRedirectUrl(route('locum.list')), attendance.list
 
         // ])
-        ->bulkActions([
-                Tables\Actions\BulkAction::make('Mark Present')
-                    ->requiresConfirmation('confirm mark present')
-                    ->action(fn (Collection $records) => $records->each->delete())
-        ])
         ->emptyStateHeading('No record added yet')
             ->striped()
             ->emptyStateDescription('Locum records appear here.');

@@ -14,7 +14,11 @@ class SuperMonthly extends Component
     public $locumComments = [];
     public $selectAll = false;
     public $doctors;
+    public function mount()
+    {
+        $this->doctors = Doctor::query()->whereIn('posting_id', auth()->user()->departments->pluck('id'))->where('is_active', true)->get();
 
+    }
     public function store()
     {
         foreach($this->doctors as $doctor){
@@ -31,6 +35,7 @@ class SuperMonthly extends Component
             }
         }
 
+
         Notification::make()
         ->title('Attendance Marked Successfully')
         ->success()
@@ -44,6 +49,7 @@ class SuperMonthly extends Component
         if(in_array($id, $this->clearedLocums)){
            $this->locumComments[$id] = "Satisfactory";
         }else{
+            
             $this->locumComments[$id]= '';
             $this->selectAll = false;
         }
@@ -67,10 +73,8 @@ class SuperMonthly extends Component
     }
     public function render()
     {
-        $this->doctors = Doctor::query()->where('posting_id', auth()->user()->department->id)->where('is_active', true)->get();
 
-        return view('livewire.super-monthly',[
-            'doctors' => $this->doctors
-        ])->layout('layouts.app');
+
+        return view('livewire.super-monthly')->layout('layouts.app');
     }
 }

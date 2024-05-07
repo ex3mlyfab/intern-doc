@@ -2,9 +2,9 @@
     <div class="bg-white dark:bg-gray-900">
         <div class="flex justify-center h-screen">
             <div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url(/images/interns.jpg)">
-                <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
-                    <div class="p-5 bg-white opacity-70 rounded-lg shadow-xl">
-                        <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl text-center">Federal Medical Centre, Abuja <br>E-Intern Portal</h2>
+                <div class="flex items-center justify-center h-full px-20 bg-gray-900 shadow-lg bg-opacity-40">
+                    <div class="p-5 bg-white rounded-lg shadow-xl opacity-70">
+                        <h2 class="text-2xl font-bold text-center text-gray-900 sm:text-3xl">Federal Medical Centre, Abuja <br>E-Intern Portal</h2>
 
                         <p class="max-w-xl mt-3 text-gray-300">
 
@@ -24,7 +24,7 @@
                         </div>
                         <x-validation-errors class="mb-4" />
                         @if (session('status'))
-                        <div class="mb-4 font-medium text-sm text-green-600">
+                        <div class="mb-4 text-sm font-medium text-green-600">
                             {{ session('status') }}
                         </div>
                     @endif
@@ -39,16 +39,16 @@
 
                             <div>
                                 <x-label for="email" value="{{ __('Email') }}" />
-                                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                                <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
 
                             </div>
 
                             <div class="mt-6">
                                 <x-label for="password" value="{{ __('Password') }}" />
-                                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                                <x-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="current-password" />
                             </div>
                             @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                                <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
                                 </a>
                             @endif
@@ -75,7 +75,7 @@
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
+            <div class="mb-4 text-sm font-medium text-green-600">
                 {{ session('status') }}
             </div>
         @endif
@@ -85,24 +85,24 @@
 
             <div>
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="text-sm text-gray-600 ms-2">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    <a class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif

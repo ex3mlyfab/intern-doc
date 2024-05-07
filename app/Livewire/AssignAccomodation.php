@@ -29,7 +29,7 @@ class AssignAccomodation extends Component implements HasForms
                     ->schema([
                         Forms\Components\Select::make('accomodation_id')
                             ->label('Select Accomodation')
-                            ->options(Accomodation::where('status','Available')->pluck('name', 'id'))
+                            ->options(Accomodation::where('status','Available')->pluck('fullname', 'id'))
                             ->searchable()
                             ->required(),
                          ])
@@ -44,7 +44,7 @@ class AssignAccomodation extends Component implements HasForms
         ModelsAssignAccomodation::create([
                 'intern_doctor_id' => $this->internDoctor,
                 'accomodation_id'   => $data['accomodation_id'],
-                'assignment_date'  => now()->fomat('d/m/Y'),
+                'assigment_date'  => now(),
                 'status' => 'assigned'
         ]);
         Accomodation::where('id', $data['accomodation_id'])->update([
@@ -54,6 +54,7 @@ class AssignAccomodation extends Component implements HasForms
         ->title('Details Saved successfully')
         ->success()
         ->send();
+        redirect()->route('doctor.show', $this->internDoctor);
 
     }
     public function render()

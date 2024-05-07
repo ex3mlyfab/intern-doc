@@ -13,14 +13,14 @@ class AssignAccomodation extends Model
     protected $fillable = [
         'intern_doctor_id',
         'accomodation_id',
-        'assignment_date',
+        'assigment_date',
         'status',
         'end_date'
     ];
 
     protected $casts = [
-        'assignment_date' => 'datetime',
-        'end_date' => 'datetime',
+        'assignment_date' => 'datetime:m-y',
+        'end_date' => 'datetime:m-y',
     ];
 
     public function internDoctor(): BelongsTo
@@ -30,6 +30,6 @@ class AssignAccomodation extends Model
 
     public function accomodation(): BelongsTo
     {
-        return $this->belongsTo(Accomodation::class);
+        return $this->belongsTo(Accomodation::class, 'accomodation_id');
     }
 }
