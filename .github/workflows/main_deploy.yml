@@ -32,7 +32,7 @@ jobs:
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: check if package.json exists
-        id: check_files
+        id: check_package_json_files
         uses: andstor/file-existence-action@v3
         with:
           files: "package.json"
