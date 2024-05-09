@@ -118,7 +118,7 @@ class ShowIntern extends Component implements HasForms, HasInfolists, HasTable
                                     ->schema([
                                         Forms\Components\Select::make('department_id')
                                             ->relationship(name: 'department', titleAttribute: 'name',
-                                                modifyQueryUsing: fn (Builder $query) => $query->where('name', '!=', 'Admin')->whereDoesntHave('postingRecords', function (Builder $query) {
+                                                modifyQueryUsing: fn (Builder $query) => $query->where('type', '!=', 'Admin')->whereDoesntHave('postingRecords', function (Builder $query) {
                                                 $query->where('intern_doctor_id', $this->record->id);
                                                 }))
                                             ->required(),
